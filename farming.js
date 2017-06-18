@@ -21,60 +21,60 @@ farming.start = function(){
         landLayer_h: 64*6,
         controlsLayer_w: 64*5,
         controlsLayer_h: 64*1.5,
-        costPlowing: 5,
+        costPlowing: 5,// tạo màn hình chơi
         
         //shop
         shop_margin_x: 50,
-        shop_margin_y: 20
+        shop_margin_y: 20 // tạo shop
     }
     
     //player object
     var playerObj = {
-        money: 300,
+        money: 300, //đặt tiền
         currentCrop: 0     
     }
     
     //crops
     gameObj.crops = [
         {
-            name: 'tomato',
-            cost: 10,
-            revenue: 18,
-            time_to_ripe: 10, //secods
+            name: 'tomato',// chọn tomato 
+            cost: 10,//trả
+            revenue: 18,//nhận
+            time_to_ripe: 10, //seconds
             time_to_death: 30, //second from when it's ripe
-            image: 'tomato.png'
+            image: 'tomato.png'// sử dụng ảnh tomato 
         },
         {
-            name: 'artichoke',
-            cost: 20,
-            revenue: 38,
-            time_to_ripe: 60,
-            time_to_death: 60,
-            image: 'artichoke.png'
+            name: 'artichoke',// chọn atiso
+            cost: 20,//trả
+            revenue: 38,//nhận
+            time_to_ripe: 60,//seconds
+            time_to_death: 60, //second from when it's ripe
+            image: 'artichoke.png'// sử dụng ảnh atiso
         },
         {
-            name: 'lettuce',
-            cost: 15,
-            revenue: 26,
-            time_to_ripe: 30,
-            time_to_death: 60,
-            image: 'lettuce.png'
+            name: 'lettuce',// chọn lettuce
+            cost: 15,//trả
+            revenue: 26,//nhận
+            time_to_ripe: 30,//seconds
+            time_to_death: 60, //second from when it's ripe
+            image: 'lettuce.png'// sử dụng ảnh lettuce
         },
         {
-            name: 'eggplant',
-            cost: 30,
-            revenue: 78,
-            time_to_ripe: 120,
-            time_to_death: 120,
-            image: 'eggplant.png'
+            name: 'eggplant',// chọn eggplant
+            cost: 30,//trả
+            revenue: 78,//nhận
+            time_to_ripe: 120,//seconds
+            time_to_death: 120, //second from when it's ripe
+            image: 'eggplant.png'// sử dụng ảnh eggplant
         },
         {
-            name: 'peppers',
-            cost: 40,
-            revenue: 82,
-            time_to_ripe: 180,
-            time_to_death: 180,
-            image: 'peppers.png'
+            name: 'peppers',// chọn peppers
+            cost: 40,//trả
+            revenue: 82,//nhận
+            time_to_ripe: 180,//seconds
+            time_to_death: 180, //second from when it's ripe
+            image: 'peppers.png'// sử dụng ảnh peppers
         }
     ];
     
@@ -98,14 +98,14 @@ farming.start = function(){
     
     //shop button
     var shopButton = new lime.GlossyButton().setColor('#133242').setText('Shop')
-        .setPosition(60, gameObj.height-gameObj.controlsLayer_h/2)
-        .setSize(80, 40);
-    controlsLayer.appendChild(shopButton); 
+        .setPosition(60, gameObj.height-gameObj.controlsLayer_h/2) //đặt biến tiền
+        .setSize(80, 40); //đặt kích thước
+    controlsLayer.appendChild(shopButton); //hiện biến
     
     //money
     var moneyLabel = new lime.Label().setText('$'+playerObj.money).setFontColor('#E8FC08')
-        .setPosition(gameObj.controlsLayer_w-50, gameObj.height-gameObj.controlsLayer_h/2);
-    controlsLayer.appendChild(moneyLabel); 
+        .setPosition(gameObj.controlsLayer_w-50, gameObj.height-gameObj.controlsLayer_h/2);// đặt biến tiền ở vị trí
+    controlsLayer.appendChild(moneyLabel);  //hiện biến tiền
     
     //updating money indicator
     gameObj.updateMoney = function() {
@@ -113,7 +113,7 @@ farming.start = function(){
     };
     
     //create land elements
-    for(var i=0; i<gameObj.num_tiles_x; i++) {
+    for(var i=0; i<gameObj.num_tiles_x; i++) { //loop for: Tạo ô
         for(var j=0; j<gameObj.num_tiles_y; j++) {
             var landElement = new farming.Land(gameObj, playerObj).setPosition(i*gameObj.tile_size, j*gameObj.tile_size);
             landLayer.appendChild(landElement);
@@ -126,15 +126,15 @@ farming.start = function(){
     var shopScene = new lime.Scene().setRenderer(lime.Renderer.CANVAS);
     var shopLayer = new lime.Layer().setAnchorPoint(0, 0);
     
-    var shopBackground = new lime.Sprite().setAnchorPoint(0,0).setPosition(0,0)
-        .setSize(gameObj.width, gameObj.height).setFill('#0D0D0D');
+    var shopBackground = new lime.Sprite().setAnchorPoint(0,0).setPosition(0,0)// background shop   
+        .setSize(gameObj.width, gameObj.height).setFill('#0D0D0D');             // đặt kích thước
     shopLayer.appendChild(shopBackground);
     shopScene.appendChild(shopLayer);
     
     //close button
-    var closeButton = new lime.GlossyButton().setColor('#133242').setText('Back')
-        .setPosition(gameObj.width/2, gameObj.height-25)
-        .setSize(80, 40);
+    var closeButton = new lime.GlossyButton().setColor('#133242').setText('Back')// nút back trong shop
+        .setPosition(gameObj.width/2, gameObj.height-25)    //đặt vị trí
+        .setSize(80, 40);                                   //đặt kich thước
     shopLayer.appendChild(closeButton);
     
     //launch shop event
